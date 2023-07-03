@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         会员购抢票
+// @description  当前仅支持实名活动购票（即需要添加购买人的活动）
 // @version      0.1
 // @author       TakamiChika(17014@163.com)
 // @match        https://show.bilibili.com/platform/detail.html*
