@@ -15,7 +15,7 @@
   const priceNo = 1;  // 抢第几种价格
   const count = 1;  // 抢几张
 
-  const delay = 80;  // 网络延迟阈值，网好的话适当把这个值调小
+  const delay = 150;  // 网络延迟阈值，网好的话适当把这个值调小
 
   function clickBuy1() {
     if ($(".product-buy.enable").length > 0) {
@@ -29,17 +29,20 @@
         resolve();
         return;
       }
-      if ($(".count-plus.active").length > 0) {
-        for (let index = 0; index < count - 1; index++) {
-          setTimeout(() => {
-            $(".count-plus.active").trigger('click');
-            if (index === count - 2) {
-              resolve();
-              return;
-            }
-          }, index * 70)
-        }
-      }
+      setTimeout(() => {
+        if ($(".count-plus.active").length > 0) {
+          for (let index = 0; index < count - 1; index++) {
+            setTimeout(() => {
+              $(".count-plus.active").trigger('click');
+              if (index === count - 2) {
+                resolve();
+                console.log('click add done');
+                return;
+              }
+            }, index * 100)
+          }
+        }  
+      }, 180)
     })
   };
 
@@ -74,8 +77,11 @@
       };
       let c = 1;
       if ($(".tickets").length > 0) {
-        $(".tickets").children().eq(priceNo - 1).trigger('click');
-        resolve();
+        setTimeout(() => {
+          $(".tickets").children().eq(priceNo - 1).trigger('click');
+          console.log('click price done');
+          resolve();
+        }, 190)
       } else {
         console.log('not find tickets, retry:' + c);
         c++;
